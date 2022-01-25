@@ -1,5 +1,6 @@
 import 'package:first_flutter_projects/pages/home_page.dart';
 import 'package:first_flutter_projects/pages/login.dart';
+import 'package:first_flutter_projects/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -15,24 +16,20 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.light,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.teal,
-        primaryTextTheme: GoogleFonts.latoTextTheme(),
-        fontFamily: GoogleFonts.lacquer().fontFamily
-      ),
-      darkTheme: ThemeData(primarySwatch:Colors.teal),
+          primarySwatch: Colors.teal,
+          primaryTextTheme: GoogleFonts.latoTextTheme(),
+          fontFamily: GoogleFonts.abel().fontFamily),
+      darkTheme: ThemeData(primarySwatch: Colors.teal),
       // home: HomePage(),
       routes: {
-        "/":(context)=> LoginPage(),
-        "/home":(context)=>HomePage(),
-        "/login":(context)=>LoginPage()
+        "/": (context) => LoginPage(),
+        MyRouts.homeRoute: (context) => HomePage(),
+        MyRouts.loginRoute: (context) => LoginPage()
       },
     );
   }
 
-  bringVeg(){
+  bringVeg() {
     print("Vegetablesssss");
   }
-
 }
-
-
