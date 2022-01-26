@@ -1,7 +1,15 @@
 import 'package:first_flutter_projects/utils/routes.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  var name = "";
+  bool changed = false;
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -27,9 +35,9 @@ class LoginPage extends StatelessWidget {
               height: 50.0,
             ),
 
-            const Text(
-              "Login Page",
-              style: TextStyle(
+            Text(
+              "Login Page $name",
+              style: const TextStyle(
                   fontSize: 20,
                   color: Colors.amber,
                   fontWeight: FontWeight.bold),
@@ -51,6 +59,10 @@ class LoginPage extends StatelessWidget {
                           labelText: "UserName",
                           border: OutlineInputBorder(),
                         ),
+                        onChanged: (value) {
+                          name = value;
+                          setState(() {});
+                        },
                         validator: (String value) {
                           return (value != null && value.contains('@'))
                               ? 'Do not use the @ char.'
@@ -71,7 +83,36 @@ class LoginPage extends StatelessWidget {
                           hintText: "Enter PassWord",
                           labelText: "Password",
                         ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 50.0,
+                    ),
+                    InkWell(
+                      onTap: () async{
+                        setState(() {
+                          changed = true;
+                        });
 
+                        await Future.delayed(Duration(seconds: 5));
+                        Navigator.pushNamed(context, MyRouts.homeRoute);
+                      },
+                      child: AnimatedContainer(
+                        width: changed ? 50 : 150,
+                        height: 50,
+                        alignment: Alignment.center,
+                        child: const Text(
+                          "Login",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18),
+                        ),
+                        decoration: BoxDecoration(
+                            color: Colors.teal,
+                            shape: BoxShape.rectangle,
+                            borderRadius: BorderRadius.circular(changed? 20: 0)),
+                        duration: Duration(seconds: 1),
                       ),
                     ),
                     const SizedBox(
